@@ -1,0 +1,15 @@
+// <div className="map">
+// <LoadScript>
+//   <GoogleMap
+//     id="google-map"
+//     mapContainerStyle={{ height: "400px", width: "100%" }}
+//     center={{ lat: 51.505, lng: -0.09 }}
+//     zoom={13}
+//   >
+//     <GMarker position={{ lat: 51.505, lng: -0.09 }} />
+//     <InfoWindow position={{ lat: 51.505, lng: -0.09 }}>
+//       <div>Google Map Location</div>
+//     </InfoWindow>
+//   </GoogleMap>
+// </LoadScript>
+// </div>
