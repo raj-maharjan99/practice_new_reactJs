@@ -1,25 +1,20 @@
 import React from "react";
-import Home from "./Home";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import RootLayout from "./RootLayout";
-import Details from "./Details";
-import Full from "./Full";
+import Movie from "./Movie";
+import MovieDetail from "./MovieDetail";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Outlet />,
-    children: [
-      { path: "/", element: <Home /> },
-      { path: "detail/:id", element: <Details /> },
-      { path: "full/:i", element: <Full /> },
-      { path: "*", element: <h2>error page</h2> },
-    ],
-  },
-]);
-
-function App() {
+const App = () => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Outlet />,
+      children: [
+        { path: "/", element: <Movie /> },
+        { path: "detail/:id", element: <MovieDetail /> },
+      ],
+    },
+  ]);
   return <RouterProvider router={router} />;
-}
+};
 
 export default App;
