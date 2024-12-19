@@ -4,10 +4,10 @@ import { IMGPATH, pageNo } from "./movieData";
 const Movie1to10 = ({ movies, setPage, handleMovieDetail }) => {
   return (
     <div>
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex items-center justify-center gap-2 sm:flex-row flex-col">
         <div>
           <div className="flex items-center justify-center gap-2 mt-5 ">
-            <div className="flex gap-3 justify-center ">
+            <div className="flex gap-3 justify-center flex-wrap px-1 ">
               {pageNo.slice(0, 10).map((pageNumber) => (
                 <button
                   key={pageNumber.id}

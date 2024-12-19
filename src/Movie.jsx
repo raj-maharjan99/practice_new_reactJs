@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Movie1to10 from "./Movie1to10";
 import Movie11to20 from "./Movie11to20";
+import Loading from "./Loading";
 const Movie = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
@@ -40,7 +41,26 @@ const Movie = () => {
           movies={movies}
         />
       ) : (
-        <div>next page after 21</div>
+        <div className="relative h-screen ">
+          {" "}
+          <div className="flex flex-col absolute inset-0 mt-[20%]  gap-6 items-center z-10 ">
+            <h2 className="sm:text-[30px]">
+              Next page after 21 is coming soon......
+            </h2>{" "}
+            <div>
+              {" "}
+              <button
+                className="border border-black bg-orange-700 px-2 rounded-full"
+                onClick={() => setPage(1)}
+              >
+                Back to Home
+              </button>
+            </div>
+          </div>
+          <div className="absolute inset-0 z-0">
+            <Loading />
+          </div>
+        </div>
       )}
     </>
   );
