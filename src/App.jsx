@@ -1,17 +1,12 @@
 import React from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import Movie from "./Movie";
-import MovieDetail from "./MovieDetail";
-
+import Home from "./Home";
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Outlet />,
-      children: [
-        { path: "/", element: <Movie /> },
-        { path: "detail/:id", element: <MovieDetail /> },
-      ],
+      children: [{ path: "/", element: <Home /> }],
     },
   ]);
   return <RouterProvider router={router} />;
