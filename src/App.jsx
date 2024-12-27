@@ -1,15 +1,13 @@
 import React from "react";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import Home from "./Home";
+
+import Todo from "./pages/todo";
+
 const App = () => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Outlet />,
-      children: [{ path: "/", element: <Home /> }],
-    },
-  ]);
-  return <RouterProvider router={router} />;
+  return (
+    <div>
+      <Todo />
+    </div>
+  );
 };
 
 export default App;
