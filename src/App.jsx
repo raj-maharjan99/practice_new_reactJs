@@ -1,11 +1,11 @@
 import React from "react";
 
-import Todo from "./pages/todo";
+import Product from "./pages/product";
 
 const App = () => {
   return (
     <div>
-      <Todo />
+      <Product />
     </div>
   );
 };
