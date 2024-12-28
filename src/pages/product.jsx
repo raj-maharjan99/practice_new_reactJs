@@ -3,10 +3,12 @@ import { useGetProductApiQuery } from "../createApi/productApi";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../slice/cartSlice";
 import Cart from "./cart";
+import { useNavigate } from "react-router-dom";
 // import Cart from "./cart";
 
 const Product = () => {
   const { data, isLoading, isError } = useGetProductApiQuery();
+  const nav = useNavigate();
   const dispatch = useDispatch();
   // add to cart function
   const addTocartFunction = (product) => {
@@ -22,8 +24,12 @@ const Product = () => {
 
   return (
     <div>
+      <h2>
+        <button onClick={() => nav("/cart")}>Cart</button>
+      </h2>
       <h3>Total Quantity : {cart.totalQuantity}</h3>
-      <h2>Product Page</h2>{" "}
+      <h2>Product Page</h2> {/* cart page here */}
+      {/* product ui here */}
       <div
         style={{
           display: "flex",
@@ -48,7 +54,8 @@ const Product = () => {
             <div
               style={{
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "space-between",
+                padding: "2px 10px",
                 fontSize: "12px",
                 gap: "4px",
               }}
@@ -62,15 +69,6 @@ const Product = () => {
           </div>
         ))}
       </div>
-      {cart.cartItems.length > 0 && (
-        <div>
-          <Cart
-            cartItems={cart.cartItems}
-            totalQuantity={cart.totalQuantity}
-            totalPrice={cart.totalPrice}
-          />
-        </div>
-      )}
     </div>
   );
 };
