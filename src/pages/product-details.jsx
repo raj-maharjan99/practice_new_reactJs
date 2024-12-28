@@ -1,11 +1,11 @@
 import React from "react";
-import { useGetCartDetailsQuery } from "../createApi/productApi";
+import { useGetProductsDetailsQuery } from "../createApi/productApi";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ProductsDetail = () => {
   const { id } = useParams();
   const nav = useNavigate();
-  const { data } = useGetCartDetailsQuery(id);
+  const { data } = useGetProductsDetailsQuery(id);
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>

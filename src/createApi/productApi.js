@@ -1,18 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { baseUrl, getProducts, getCartDetails } from "./api-link";
 
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://dummyjson.com/",
+    baseUrl: baseUrl,
   }),
   endpoints: (builder) => ({
     getProductApi: builder.query({
-      query: (a) => `products`,
+      query: () => getProducts(),
     }),
-    getCartDetails: builder.query({
-      query: (id) => `products/${id}`,
+    getProductsDetails: builder.query({
+      query: (id) => getCartDetails(id),
     }),
   }),
 });
 
-export const { useGetProductApiQuery, useGetCartDetailsQuery } = productApi;
+export const { useGetProductApiQuery, useGetProductsDetailsQuery } = productApi;
