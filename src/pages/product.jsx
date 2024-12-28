@@ -10,6 +10,7 @@ const Product = () => {
   const { data, isLoading, isError } = useGetProductApiQuery();
   const nav = useNavigate();
   const dispatch = useDispatch();
+
   // add to cart function
   const addTocartFunction = (product) => {
     dispatch(addToCart(product));
@@ -60,7 +61,9 @@ const Product = () => {
                 gap: "4px",
               }}
             >
-              <button>Details</button>
+              <button onClick={() => nav(`details/${product.id}`)}>
+                Details
+              </button>
               <button onClick={() => addTocartFunction(product)}>
                 Add to Cart
               </button>
