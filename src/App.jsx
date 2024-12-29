@@ -1,30 +1,45 @@
-import React from "react";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import Product from "./pages/product";
-import Cart from "./pages/cart";
-import ProductsDetail from "./pages/product-details";
+import { useState } from "react";
 
-const App = () => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Outlet />,
-      children: [
-        { path: "/", element: <div>Home</div> },
-        {
-          path: "/product",
-          element: <Product />,
-        },
-        { path: "/cart", element: <Cart /> },
-        { path: "/product/details/:id", element: <ProductsDetail /> },
-      ],
-    },
-  ]);
+import "./App.css";
+import { Button } from "./components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./components/ui/carousel";
+
+function App() {
+  const [count, setCount] = useState(0);
+
   return (
     <>
-      <RouterProvider router={router} />
+      <Button className="mb-6">hello</Button>
+      <Carousel className="mx-2 ">
+        <CarouselContent className="-ml-2 md:-ml-4">
+          <CarouselItem className="pl-2 md:pl-4">
+            <img src={"1.avif"} alt="" />
+          </CarouselItem>
+          <CarouselItem className="pl-2 md:pl-4">
+            {" "}
+            <img src={"2.avif"} alt="" />
+          </CarouselItem>
+          <CarouselItem className="pl-2 md:pl-4">
+            {" "}
+            <img src={"3.avif"} alt="" />
+          </CarouselItem>
+          <CarouselItem className="pl-2 md:pl-4">
+            {" "}
+            <img src={"4.avif"} alt="" />
+          </CarouselItem>
+        </CarouselContent>
+
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
     </>
   );
-};
+}
 
 export default App;
