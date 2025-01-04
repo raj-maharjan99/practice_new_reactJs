@@ -1,43 +1,35 @@
-import { useState } from "react";
-
+import Slider from "./utils/Silder";
 import "./App.css";
-import { Button } from "./components/ui/button";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "./components/ui/carousel";
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import RootLayout from "./utils/RootLayout";
+import LoginPage from "./page/login-form";
+import { useSelector } from "react-redux";
+import SignUp from "./page/signUp-page";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { user } = useSelector((state) => state.userSlice);
 
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootLayout />,
+      children: [
+        { path: "/", element: <Slider /> },
+        { path: "/signup", element: <SignUp /> },
+        {
+          path: "/login",
+          element: user !== null ? <Navigate to="/" /> : <LoginPage />,
+        },
+      ],
+    },
+  ]);
   return (
     <>
-      <Button className="mb-6">hello</Button>
-      <Carousel className="mx-2 ">
-        <CarouselContent className="-ml-2 md:-ml-4">
-          <CarouselItem className="pl-2 md:pl-4">
-            <img src={"1.avif"} alt="" />
-          </CarouselItem>
-          <CarouselItem className="pl-2 md:pl-4">
-            {" "}
-            <img src={"2.avif"} alt="" />
-          </CarouselItem>
-          <CarouselItem className="pl-2 md:pl-4">
-            {" "}
-            <img src={"3.avif"} alt="" />
-          </CarouselItem>
-          <CarouselItem className="pl-2 md:pl-4">
-            {" "}
-            <img src={"4.avif"} alt="" />
-          </CarouselItem>
-        </CarouselContent>
-
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+      <RouterProvider router={router} />
     </>
   );
 }
