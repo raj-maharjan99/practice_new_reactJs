@@ -7,7 +7,7 @@ import {
   CarouselPrevious,
 } from "../components/ui/carousel";
 
-const Silder = () => {
+const Slider = () => {
   return (
     <>
       <Carousel className="mx-2 mt-4 ">
@@ -36,4 +36,4 @@ const Silder = () => {
   );
 };
 
-export default Silder;
+export default Slider;

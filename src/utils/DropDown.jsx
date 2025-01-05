@@ -1,16 +1,6 @@
 import * as React from "react";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearFromLocal } from "@/slices/userSlice";
 
@@ -18,7 +8,7 @@ export function DropDown() {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userSlice);
-
+  console.log(user);
   return (
     <nav className="flex items-center justify-between px-4 py-3 bg-white shadow-md">
       {/* Logo */}
@@ -26,15 +16,15 @@ export function DropDown() {
 
       {/* Navigation Links */}
       <div className="flex space-x-4">
-        <a href="#home" className="text-gray-600 hover:text-black">
+        <Link to="/" className="text-gray-600 hover:text-black">
           Home
-        </a>
-        <a href="#about" className="text-gray-600 hover:text-black">
+        </Link>
+        <Link to="about" className="text-gray-600 hover:text-black">
           About
-        </a>
-        <a href="#contact" className="text-gray-600 hover:text-black">
-          Contact
-        </a>
+        </Link>
+        <Link to="product" className="text-gray-600 hover:text-black">
+          Products
+        </Link>
       </div>
 
       {/* Dropdown Menu for Categories */}
@@ -63,21 +53,41 @@ export function DropDown() {
       {/* User Actions */}
       <div className="flex items-center space-x-4">
         {user !== null ? (
-          <>
-            <a
-              href="#user-profile"
-              className="px-3 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700"
-            >
-              User Profile
-            </a>
+          user.isAdmin ? (
+            <>
+              <>
+                <Link
+                  href="#user-profile"
+                  className="px-3 py-2 text-sm font-medium text-white bg-zinc-400 rounded-md hover:bg-zinc-700"
+                >
+                  Admin Profile
+                </Link>
 
-            <button
-              onClick={() => dispatch(clearFromLocal(), nav("/login"))}
-              className="px-3 py-2 text-sm font-medium text-white bg-gray-600 rounded-md hover:bg-gray-700"
-            >
-              Logout
-            </button>
-          </>
+                <button
+                  onClick={() => dispatch(clearFromLocal(), nav("/login"))}
+                  className="px-3 py-2 text-sm font-medium text-white bg-gray-600 rounded-md hover:bg-gray-700"
+                >
+                  Logout
+                </button>
+              </>
+            </>
+          ) : (
+            <>
+              <Link
+                href="#user-profile"
+                className="px-3 py-2 text-sm font-medium text-white bg-zinc-700 rounded-md hover:bg-zinc-800"
+              >
+                User Profile
+              </Link>
+
+              <button
+                onClick={() => dispatch(clearFromLocal(), nav("/login"))}
+                className="px-3 py-2 text-sm font-medium text-white bg-gray-600 rounded-md hover:bg-gray-700"
+              >
+                Logout
+              </button>
+            </>
+          )
         ) : (
           <>
             <button

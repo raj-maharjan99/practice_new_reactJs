@@ -3,11 +3,11 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [usersRegister, { isError, isLoading, data }] = useUserSignUpMutation();
-
+  const nav = useNavigate();
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -21,20 +21,22 @@ export default function SignUp() {
         .required("Email is required"),
       password: Yup.string().required("Password is required"),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         const res = await usersRegister(values).unwrap();
-        console.log(res);
+
         switch (res.status) {
           case "sucess":
             toast.success("User Successfully Created");
+            resetForm();
+            nav("/login");
             break;
           case "error":
             toast.error("User already exist.");
             break;
         }
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     },
   });
