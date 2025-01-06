@@ -15,6 +15,7 @@ import { Button } from "./components/ui/button";
 import AdminProduct from "./page/Product";
 import UserProduct from "./page/UserProduct";
 import GithubPage from "./page/GithubPage";
+import NotValid from "./utils/Not-Valid";
 
 function App() {
   const { user } = useSelector((state) => state.userSlice);
@@ -29,6 +30,10 @@ function App() {
           path: "/github",
           element: <GithubPage />,
         },
+        // {
+        //   path: "/github/error",
+        //   element: <NotValid />,
+        // },
         {
           path: "/signup",
           element: user !== null ? <Navigate to="/" /> : <SignUp />,
