@@ -11,7 +11,10 @@ import { useSelector } from "react-redux";
 import SignUp from "./page/signUp-page";
 import Home from "./page/Home";
 import { Button } from "./components/ui/button";
-import Product from "./page/Product";
+
+import AdminProduct from "./page/Product";
+import UserProduct from "./page/UserProduct";
+import GithubPage from "./page/GithubPage";
 
 function App() {
   const { user } = useSelector((state) => state.userSlice);
@@ -23,6 +26,10 @@ function App() {
       children: [
         { path: "/", element: <Home /> },
         {
+          path: "/github",
+          element: <GithubPage />,
+        },
+        {
           path: "/signup",
           element: user !== null ? <Navigate to="/" /> : <SignUp />,
         },
@@ -31,8 +38,12 @@ function App() {
           element: user !== null ? <Navigate to="/" /> : <LoginPage />,
         },
         {
-          path: "/product",
-          element: <Product />,
+          path: "admin-product",
+          element: <AdminProduct />,
+        },
+        {
+          path: "user-product",
+          element: <UserProduct />,
         },
         {
           path: "*",

@@ -12,8 +12,10 @@ export function DropDown() {
   return (
     <nav className="flex items-center justify-between px-4 py-3 bg-white shadow-md">
       {/* Logo */}
-      <div className="text-lg font-bold text-gray-800">E-Shop</div>
-
+      <div className="text-lg font-bold text-gray-800 ">E-Shop</div>
+      <div className="github  font-bold font-roboto text-lg">
+        <Link to={"/github"}>GitHub</Link>
+      </div>
       {/* Navigation Links */}
       <div className="flex space-x-4">
         <Link to="/" className="text-gray-600 hover:text-black">
@@ -22,8 +24,11 @@ export function DropDown() {
         <Link to="about" className="text-gray-600 hover:text-black">
           About
         </Link>
-        <Link to="product" className="text-gray-600 hover:text-black">
-          Products
+        <Link
+          to={`${user?.isAdmin ? "admin-product" : "user-product"}`}
+          className="text-gray-600 hover:text-black"
+        >
+          {user?.isAdmin ? "Modify-Products" : "Check-Products"}
         </Link>
       </div>
 
@@ -92,7 +97,7 @@ export function DropDown() {
           <>
             <button
               onClick={() => nav("/login")}
-              className="px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+              className="px-3 py-2 text-sm font-medium text-white bg-zinc-600 rounded-md hover:bg-zinc-800"
             >
               Log In
             </button>
